@@ -4,7 +4,7 @@
 # a list of version numbers.
 FROM phusion/baseimage:0.9.18
 
-MAINTAINER Doug Goldstein <cardoe@cardoe.com>
+MAINTAINER Derek Straka <derek@asterius.io>
 
 # No Debian that's a bad Debian! We don't have an interactive prompt don't fail
 ENV DEBIAN_FRONTEND noninteractive
@@ -22,10 +22,6 @@ RUN apt-get --quiet --yes update && \
 	apt-get --quiet --yes install gawk wget git-core diffstat unzip \
 		texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev \
 		xterm python sudo curl libssl-dev
-
-# Update the CA certificates with the web proxy cert
-ADD proxy.crt /usr/local/share/ca-certificates/StarLab.crt
-RUN update-ca-certificates --fresh
 
 # If you need to add more packages, just do additional RUN commands here
 # I've intentionally done this so that the layers before this don't have
