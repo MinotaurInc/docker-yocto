@@ -17,6 +17,9 @@ ENTRYPOINT ["/sbin/my_init", "--"]
 RUN mkdir -p /var/build
 WORKDIR /var/build
 
+# Add the 32-bit arch for compat libraries
+RUN dpkg --add-architecture i386
+
 # Yocto's depends (plus sudo)
 RUN apt-get --quiet --yes update && \
 	apt-get --quiet --yes install gawk wget git-core diffstat unzip \
@@ -31,6 +34,10 @@ RUN apt-get --quiet --yes install tmux
 
 # Add some debug utilities
 RUN apt-get --quiet --yes install strace ltrace
+
+# Add all the compat libraries needed to build imx-loader-native (It fails to build the libs itself) 
+RUN apt-get --quiet --yes install g++-multilib gcc-multilib lib32z1-dev \
+        liblzo2-dev:i386 libusb-1.0-0-dev:i386 uuid-dev:i386 
 
 # Set the default shell to bash instead of dash
 RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
