@@ -2,7 +2,7 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.19
 
 MAINTAINER Derek Straka <derek@asterius.io>
 
@@ -30,7 +30,7 @@ RUN apt-get --quiet --yes update && \
 # I've intentionally done this so that the layers before this don't have
 # to be regenerated and fetched since the above layer is big.
 # RUN apt-get --quiet --yes install something
-RUN apt-get --quiet --yes install tmux
+RUN apt-get --quiet --yes install tmux libncurses5-dev
 
 # Add some debug utilities
 RUN apt-get --quiet --yes install strace ltrace
@@ -65,5 +65,4 @@ ADD bitbake.sh /usr/local/bin/image-writer
 ADD bitbake.sh /usr/local/bin/toaster
 ADD bitbake.sh /usr/local/bin/toaster-eventreplay
 
-# Derek wants to be able to cd ~
 ENV HOME /var/build
