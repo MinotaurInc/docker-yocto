@@ -39,6 +39,9 @@ RUN apt-get --quiet --yes install strace ltrace
 RUN apt-get --quiet --yes install g++-multilib gcc-multilib lib32z1-dev \
         liblzo2-dev:i386 libusb-1.0-0-dev:i386 uuid-dev:i386 
 
+# Add more items for REALLY OLD yocto builds
+RUN apt-get --quiet --yes install libsdl1.2-dev chrpath
+
 # Set the default shell to bash instead of dash
 RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
 
