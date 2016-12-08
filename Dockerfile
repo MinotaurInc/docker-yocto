@@ -2,7 +2,7 @@
 # sure you lock down to a specific version, not to `latest`!
 # See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
 # a list of version numbers.
-FROM phusion/baseimage:0.9.19
+FROM phusion/baseimage:0.9.18
 
 MAINTAINER Derek Straka <derek@asterius.io>
 
@@ -34,10 +34,6 @@ RUN apt-get --quiet --yes install tmux libncurses5-dev
 
 # Add some debug utilities
 RUN apt-get --quiet --yes install strace ltrace
-
-# Add all the compat libraries needed to build imx-loader-native (It fails to build the libs itself) 
-RUN apt-get --quiet --yes install g++-multilib gcc-multilib lib32z1-dev \
-        liblzo2-dev:i386 libusb-1.0-0-dev:i386 uuid-dev:i386 
 
 # Add more items for REALLY OLD yocto builds
 RUN apt-get --quiet --yes install libsdl1.2-dev chrpath
