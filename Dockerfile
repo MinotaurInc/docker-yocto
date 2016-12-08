@@ -38,6 +38,9 @@ RUN apt-get --quiet --yes install strace ltrace
 # Add more items for REALLY OLD yocto builds
 RUN apt-get --quiet --yes install libsdl1.2-dev chrpath
 
+# Add a couple of items to generate documentation
+RUN apt-get --quiet --yes install groff ghostscript
+
 # Set the default shell to bash instead of dash
 RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
 
