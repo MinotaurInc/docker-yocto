@@ -41,6 +41,9 @@ RUN apt-get --quiet --yes install libsdl1.2-dev chrpath
 # Add a couple of items to generate documentation
 RUN apt-get --quiet --yes install groff ghostscript
 
+# Someone needs 32-bit binaries (I'm looking at you node)
+RUN apt-get --quiet --yes install libstdc++6:i386
+
 # Set the default shell to bash instead of dash
 RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
 
