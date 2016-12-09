@@ -39,7 +39,7 @@ RUN apt-get --quiet --yes install strace ltrace
 RUN apt-get --quiet --yes install libsdl1.2-dev chrpath
 
 # Add a couple of items to generate documentation
-RUN apt-get --quiet --yes install groff ghostscript
+RUN apt-get --quiet --yes install groff ghostscript txt2man
 
 # Someone needs 32-bit binaries (I'm looking at you node)
 RUN apt-get --quiet --yes install libstdc++6:i386
